@@ -194,9 +194,9 @@ clear_wait_time   = 1.0  # seconds
 
 | Name | Role | Focus Area |
 |------|------|-------------|
-| **Harry Nguyen** | Developer | Camera installation, YOLOv8 Integration |
-| **Tran Phuoc Dung (Andrew) Dang** | Developer | Embedded System, Servo Installation |
-| **Huy Le** | Designer | Mechanical Design, Testing |
-| **Thien Phong (Jayden) Dong** | Full-stack Developer | App development |
+| **Harry Nguyen** | Developer | Camera Installation, YOLOv8 Integration |
+| **Andrew Dang** | Developer | State Machine, Servo Installation |
+| **Huy Le** | Designer | Prototype Design, Testing |
+| **Jayden Dong** | Full-stack Developer | Waste-Trackin App Development |
 
 ---
