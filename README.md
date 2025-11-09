@@ -62,8 +62,7 @@ This system ensures **continuous, one-by-one item processing** using two alterna
 | SG90 Servo Motors | 8 | 4 for bins, 4 for gates |
 | Ultrasonic Sensor HC-SR04 | 1 | Optional object sensing |
 | Jumper Wires | — | GPIO connections |
-| External 5V Power Supply | 1 | Power source for servos |
-| 3D Printed / Laser-Cut Chassis | 1 | Mounting frame |
+| Wood, Formex, Cardboad | - | Prototype |
 
 ---
 
