@@ -27,7 +27,12 @@ except ImportError:
 # GPIO Pin Configuration
 RECYCLABLE_SERVO_PIN = 17
 LANDFILL_SERVO_PIN = 18
+GATE_SERVO_1 = 19
+GATE_SERVO_2 = 20
+GATE_SERVO_3 = 21
+GATE_SERVO_4 = 22
 START_BUTTON_PIN = 26
+
 
 # YOUR PATH - Updated for Raspberry Pi
 PROJECT_PATH = Path('D:/Myself/University/EE/TrashCan')
@@ -337,23 +342,39 @@ def run_webcam_detection(conf_threshold=0.25, headless=False, enable_servo=False
                 print("Initializing servos...")
                 servo_recycle = Servo(RECYCLABLE_SERVO_PIN)
                 servo_landfill = Servo(LANDFILL_SERVO_PIN)
+                gate_servo_1 = Servo(GATE_SERVO_1)
+                gate_servo_2 = Servo(GATE_SERVO_2)
+                gate_servo_3 = Servo(GATE_SERVO_3)
+                gate_servo_4 = Servo(GATE_SERVO_4)
                 start_button = Button(START_BUTTON_PIN)
 
                 # Initialize servo positions (both at neutral/closed position)
                 servo_recycle.mid()  # 0 degrees (closed)
                 servo_landfill.mid()  # 0 degrees (closed)
+                gate_servo_1.mid()
+                gate_servo_2.mid()
+                gate_servo_3.mid()
+                gate_servo_4.mid()
                 sleep(1)
-
+                
                 print("✓ Servos initialized")
                 print(f"  Recyclable servo: GPIO {RECYCLABLE_SERVO_PIN} (turns right when recyclable detected)")
                 print(f"  Landfill servo: GPIO {LANDFILL_SERVO_PIN} (turns left when landfill detected)")
                 print(f"  Start button: GPIO {START_BUTTON_PIN}")
+                print("All gates are set up at their initial position")
             except Exception as e:
                 print(f"❌ Failed to initialize servos: {e}")
                 enable_servo = False
                 servo_recycle = None
                 servo_landfill = None
+                gate_servo_1 = None
+                gate_servo_2 = None
+                gate_servo_3 = None
+                gate_servo_4 = None
                 start_button = None
+            
+            #initialize curren state at IDLE
+            current_state = 0
 
     # Initialize camera - Try Picamera2 first (for Arducam/libcamera), then fall back to cv2
     picam2 = None
@@ -465,7 +486,54 @@ def run_webcam_detection(conf_threshold=0.25, headless=False, enable_servo=False
                     cv2.putText(frame, label, (x1 + 2, y1 - 4), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
 
             # Servo control logic
-            current_time = time.time()
+
+            is_object_detected = (recyclable > 0) or (landfill > 0)
+            if enable_servo:
+                #state 0: wait for the button
+                if current_state == 0:
+                    if start_button.is_pressed:
+                        current_state = 1
+                elif current_state == 1:
+                    #drop 1 object for the first time:
+                    gate_servo_1.min()
+                    gate_servo_2.min()
+                    gate_servo_3.min()
+                    gate_servo_4.min()
+                
+                    sleep(1)
+                    #turn the gate
+                    gate_servo_1.mid()
+                    gate_servo_2.mid()
+                    gate_servo_3.mid()
+                    gate_servo_4.mid()
+                    current_state == 2
+                elif current_state == 2:
+                    if is_object_detected:
+                        current_state = 3
+                elif current_state == 3:
+                    if recyclable > 0 and landfill == 0: #detect recyclable
+                        servo_recycle.max() #rotate recycle servo 90
+                        servo_landfill.min() #keep the landfill servo at 0
+                        sleep(2)  #wait for object to fall
+                        servo_recycle.min()  #close the recycle servo
+                    elif recyclable == 0 and landfill > 0: #detect landfill
+                        servo_recycle.min() #keep the recycle servo at 0
+                        servo_landfill.max() #rotate the landfill servo 90
+                        sleep(2)  #wait for object to fall
+                        servo_landfill.min()  #close the landfill servo
+                    elif recyclable == 0 and landfill == 0: #detect human
+                        servo_recycle.min() #keep the recycle servo at 0
+                        servo_landfill.min() #keep the landfill servo at 0
+                    current_state = 4  #turn to state 4
+                elif current_state == 4:
+                    if recyclable == 0 and landfill == 0:
+                        current_state = 1
+                
+
+
+
+
+         '''   current_time = time.time()
             if enable_servo and servo_recycle is not None:
                 # Check if enough time has passed since last detection
                 if current_time - last_detection_time > detection_cooldown:
@@ -491,7 +559,7 @@ def run_webcam_detection(conf_threshold=0.25, headless=False, enable_servo=False
                         # Both detected - don't activate servos
                         print("⚠️  Both recyclable and landfill detected - no action")
                         servo_recycle.mid()
-                        servo_landfill.mid()
+                        servo_landfill.mid() '''
 
             # Stats overlay
             overlay = frame.copy()
@@ -621,6 +689,10 @@ if __name__ == '__main__':
                 run_webcam_detection(headless=False)
             elif choice == '9':
                 run_webcam_detection(headless=True)
+            elif choice == '10': 
+                run_webcam_detection(headless=False, enable_servo=True)
+            elif choice == '11':
+                run_webcam_detection(headless=True, enable_servo=True)
             elif choice == '0':
                 print("\nExiting...")
                 break
