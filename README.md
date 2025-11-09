@@ -81,22 +81,6 @@ This system ensures **continuous, one-by-one item processing** using two alterna
 
 ---
 
-## 🧠 System Workflow  
-
-```mermaid
-flowchart TD
-    A[Start] --> B[State: CLOSED<br>Detect & Classify Item]
-    B --> |Detected| C[Open Correct Bin<br>(Recyclable or Landfill)]
-    C --> D[Wait 2.5s for item to fall]
-    D --> E[Close Bin]
-    E --> F[State: WAITING_CLEAR<br>Wait until object gone]
-    F --> G[State: OPENING<br>Open Current Gate]
-    G --> H[State: OPEN<br>Hold 1s, Close, Toggle Gate]
-    H --> B
-```
-
----
-
 ## 💾 Installation  
 
 ### 1️⃣ Clone Repository  
@@ -197,6 +181,23 @@ clear_wait_time   = 1.0  # seconds
 | **Harry Nguyen** | Developer | Camera Installation, YOLOv8 Integration |
 | **Andrew Dang** | Developer | State Machine, Servo Installation |
 | **Huy Le** | Designer | Prototype Design, Testing |
-| **Jayden Dong** | Full-stack Developer | Waste-Trackin App Development |
+| **Jayden Dong** | Full-stack Developer | Waste-Tracking App Development |
 
 ---
+
+## 📚 References
+
+Bochkovskiy, A., Wang, C. Y., & Liao, H. Y. M. (2020). YOLOv4: Optimal speed and accuracy of object detection. *arXiv preprint arXiv:2004.10934.* https://arxiv.org/abs/2004.10934  
+
+Ultralytics. (2023). *YOLOv8: The world’s most advanced real-time object detection model.* Retrieved November 9, 2025, from https://github.com/ultralytics/ultralytics  
+
+Roboflow. (n.d.). *Roboflow: Build computer vision models faster.* Retrieved November 9, 2025, from https://roboflow.com/  
+
+Raspberry Pi Foundation. (n.d.). *Raspberry Pi Documentation.* Retrieved November 9, 2025, from https://www.raspberrypi.com/documentation/  
+
+Bradski, G. (2000). The OpenCV Library. *Dr. Dobb’s Journal of Software Tools.*  
+
+RPi.GPIO Developers. (n.d.). *RPi.GPIO: A Python module to control the GPIO on a Raspberry Pi.* Retrieved November 9, 2025, from https://pypi.org/project/RPi.GPIO/  
+
+Raspberry Pi Ltd. (n.d.). *Picamera2: The libcamera-based Python interface for Raspberry Pi cameras.* Retrieved November 9, 2025, from https://github.com/raspberrypi/picamera2
+
