@@ -194,18 +194,9 @@ clear_wait_time   = 1.0  # seconds
 
 | Name | Role | Focus Area |
 |------|------|-------------|
-| **Dang Tran Phuoc Dung** | Lead Developer | Embedded Systems, YOLOv8 Integration |
-| **Hackathon Team** | Collaborators | Mechanical Design, Testing, Documentation |
+| **Harry Nguyen** | Developer | Camera installation, YOLOv8 Integration |
+| **Tran Phuoc Dung (Andrew) Dang** | Developer | Embedded System, Servo Installation |
+| **Huy Le** | Designer | Mechanical Design, Testing |
+| **Thien Phong (Jayden) Dong** | Full-stack Developer | App development |
 
 ---
-
-## 📜 License  
-
-Licensed under the **MIT License** — free for use, modification, and distribution.  
-
----
-
-## 🌍 Vision  
-
-> **“Sort smarter, not harder.”**  
-> Aiming to make intelligent waste management accessible, affordable, and eco-friendly for all.  
