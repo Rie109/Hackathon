@@ -1,20 +1,20 @@
-# ♻️ Automated YOLOv8 Waste Sorter  
+# ♻️ Automated YOLOv11 Waste Sorter  
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)
 ![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi-5-red?logo=raspberrypi)
-![YOLOv8](https://img.shields.io/badge/YOLOv8-Detection-green?logo=ultralytics)
+![YOLOv11](https://img.shields.io/badge/YOLOv11-Detection-green?logo=ultralytics)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 ![Status](https://img.shields.io/badge/Status-Active-success)
 
-> **An autonomous dual-gate waste sorting system powered by YOLOv8, Raspberry Pi, and 8 precision servos.**  
+> **An autonomous dual-gate waste sorting system powered by YOLOv11, Raspberry Pi, and 8 precision servos.**  
 > Designed to **identify and sort waste** into “Recyclable” or “Landfill” bins in real time.  
 
 ---
 
 ## 🧠 Overview  
 
-The **Automated YOLOv8 Waste Sorter** combines **AI-based object detection**, **embedded hardware control**, and **mechanical automation**.  
-A **custom YOLOv8 model** detects items through the Pi Camera, and a **Finite State Machine (FSM)** controls servo-driven gates and bins to sort waste automatically.  
+The **Automated YOLOv11 Waste Sorter** combines **AI-based object detection**, **embedded hardware control**, and **mechanical automation**.  
+A **custom YOLOv11 model** detects items through the Pi Camera, and a **Finite State Machine (FSM)** controls servo-driven gates and bins to sort waste automatically.  
 
 This system ensures **continuous, one-by-one item processing** using two alternating gates for uninterrupted operation.  
 
@@ -23,8 +23,8 @@ This system ensures **continuous, one-by-one item processing** using two alterna
 ## 🌟 Key Features  
 
 ### ⚡ Real-Time Classification  
-- Detects and classifies waste instantly using a **custom-trained YOLOv8 model**.  
-- Powered by **Ultralytics YOLOv8** and optimized for Raspberry Pi.  
+- Detects and classifies waste instantly using a **custom-trained YOLOv11 model**.  
+- Powered by **Ultralytics YOLOv11** and optimized for Raspberry Pi.  
 
 ### 🔀 Dual-Gate System  
 - Two alternating gates (`Gate 1`, `Gate 2`) ensure **non-stop item flow**.  
@@ -100,7 +100,7 @@ sudo apt update
 sudo apt install -y python3-picamera2
 ```
 
-### 3️⃣ Add Your YOLOv8 Model  
+### 3️⃣ Add Your YOLOv11 Model  
 Place your trained model file `best.pt` at:  
 ```
 /home/harry/Hackathon/best.pt
@@ -178,7 +178,7 @@ clear_wait_time   = 1.0  # seconds
 
 | Name | Role | Focus Area |
 |------|------|-------------|
-| **Harry Nguyen** | Developer | Camera Installation, YOLOv8 Integration |
+| **Harry Nguyen** | Developer | Camera Installation, YOLOv11 Integration |
 | **Andrew Dang** | Developer | State Machine, Servo Installation |
 | **Huy Le** | Designer | Prototype Design, Testing |
 | **Jayden Dong** | Full-stack Developer | Waste-Tracking App Development |
@@ -187,17 +187,14 @@ clear_wait_time   = 1.0  # seconds
 
 ## 📚 References
 
-Bochkovskiy, A., Wang, C. Y., & Liao, H. Y. M. (2020). YOLOv4: Optimal speed and accuracy of object detection. *arXiv preprint arXiv:2004.10934.* https://arxiv.org/abs/2004.10934  
+Bochkovskiy, A., Wang, C. Y., & Liao, H. Y. M. (2024). *Ultralytics YOLO11: Redefine what’s possible in AI* [Software]. Ultralytics. Retrieved from https://docs.ultralytics.com/models/yolo11/ :contentReference[oaicite:0]{index=0}
 
-Ultralytics. (2023). *YOLOv8: The world’s most advanced real-time object detection model.* Retrieved November 9, 2025, from https://github.com/ultralytics/ultralytics  
+Dwyer, B., Nelson, J., Hansen, T., et al. (2025). *Roboflow (Version 1.0) [Software]*. Retrieved from https://roboflow.com/ :contentReference[oaicite:1]{index=1}
 
-Roboflow. (n.d.). *Roboflow: Build computer vision models faster.* Retrieved November 9, 2025, from https://roboflow.com/  
+Bradski, G. (2000). “The OpenCV Library.” *Dr. Dobb’s Journal of Software Tools*. :contentReference[oaicite:2]{index=2}
 
-Raspberry Pi Foundation. (n.d.). *Raspberry Pi Documentation.* Retrieved November 9, 2025, from https://www.raspberrypi.com/documentation/  
+Croston, B. (n.d.). RPi.GPIO: A Python module to control the GPIO on a Raspberry Pi [Software]. Retrieved from https://sourceforge.net/p/raspberry-gpio-python/wiki/Examples/ :contentReference[oaicite:3]{index=3}
 
-Bradski, G. (2000). The OpenCV Library. *Dr. Dobb’s Journal of Software Tools.*  
+Raspberry Pi Ltd. (n.d.). Picamera2: The libcamera-based Python interface for Raspberry Pi cameras [Software]. Retrieved from https://github.com/raspberrypi/picamera2 :contentReference[oaicite:4]{index=4}
 
-RPi.GPIO Developers. (n.d.). *RPi.GPIO: A Python module to control the GPIO on a Raspberry Pi.* Retrieved November 9, 2025, from https://pypi.org/project/RPi.GPIO/  
-
-Raspberry Pi Ltd. (n.d.). *Picamera2: The libcamera-based Python interface for Raspberry Pi cameras.* Retrieved November 9, 2025, from https://github.com/raspberrypi/picamera2
 
